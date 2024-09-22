@@ -1,0 +1,21 @@
+textarea {
+    min-height: 400px;
+}
+
+.read-true {
+    background-color: white;
+    color: black;
+}
+
+.read-false {
+    background-color: grey;
+    color: white;
+}
+
+textarea {
+    white-space: pre-wrap;
+}
+
+li {
+    list-style-type: none;
+}

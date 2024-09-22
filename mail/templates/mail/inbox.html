@@ -1,0 +1,63 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h2 class="my-4">{{ request.user.email }}</h2>
+
+    <button class="btn btn-sm btn-outline-primary" id="inbox">Inbox</button>
+    <button class="btn btn-sm btn-outline-primary" id="compose">Compose</button>
+    <button class="btn btn-sm btn-outline-primary" id="sent">Sent</button>
+    <button class="btn btn-sm btn-outline-primary" id="archived">Archived</button>
+    <a class="btn btn-sm btn-outline-primary" href="{% url 'logout' %}">Log Out</a>
+    <hr>
+
+    <div id="alert-box">
+        <div class="alert d-flex align-items-center" role="alert">
+            <div id="alert-message">
+            </div>
+        </div>
+    </div>
+      
+    <div id="emails-view">
+    </div>
+    <div id="emails-list">
+    </div>
+
+    <div id="compose-view">
+        <h3>New Email</h3>
+        <form id="compose-form">
+            <div class="form-group">
+                From: <input disabled class="form-control" value="{{ request.user.email }}">
+            </div>
+            <div class="form-group">
+                To: <input id="compose-recipients" class="form-control">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="compose-subject" placeholder="Subject">
+            </div>
+            <textarea class="form-control" id="compose-body" placeholder="Body"></textarea>
+            <input type="submit" class="btn btn-primary m-2"/>
+        </form>
+    </div>
+
+    <div id="email-content">
+        <div class="card my-3 border-info">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item" id="email-content-sender"></li>
+              <li class="list-group-item" id="email-content-recipients"></li>
+            </ul>
+            <div class="card-body">
+                <h4 class="card-title" id="email-content-subject"></h4>
+                <div class="card-text" id="email-content-body"></div>
+                <footer class="text-secondary"><small id="email-content-timestamp"></small></footer>
+            </div>
+            <div class="card-body">
+                <button id="email-reply" class="btn btn-info">Reply</buton>
+              </div>
+          </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %}
